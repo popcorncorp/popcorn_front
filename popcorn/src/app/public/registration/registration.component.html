@@ -4,12 +4,21 @@
   <div class="form-group">
     <label class="center-block">Name:
       <input type="text" class="form-control" formControlName="name">
+      <div [hidden]="registrationForm.controls['name'].valid || registrationForm.controls['name'].untouched" class="alert alert-danger">
+        Required field
+      </div>
     </label>
     <label class="center-block">Email:
       <input type="email" class="form-control" formControlName="email">
+      <div [hidden]="registrationForm.controls['email'].valid || registrationForm.controls['email'].untouched" class="alert alert-danger">
+        Required field
+      </div>
     </label>
     <label class="center-block">Password:
       <input class="form-control" type="password" formControlName="password">
+      <div [hidden]="registrationForm.controls['password'].valid || registrationForm.controls['password'].untouched" class="alert alert-danger">
+        Required field
+      </div>
     </label>
   </div>
   <p>Form value: {{ registrationForm.value | json }}</p>
