@@ -41,9 +41,7 @@ export class RegistrationComponent implements OnInit {
     const body = JSON.stringify(obj);
     const headers = new HttpHeaders({ 'Content-Type': 'application/json;charset=utf-8'});
 
-    return this.http.post('http://127.0.0.1:7000/api/registration', body, { headers: headers }).pipe(
-      map((resp: Response) => resp.json())
-    );
+    return this.http.post('//localhost/popcorn_back/public/api/registration', body, { headers: headers });
   }
 
 }
