@@ -4,6 +4,8 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 
 import { map, filter, tap } from 'rxjs/operators'; // hanel u sarqel arandzin service
+import { RestService } from '../../shared/services';
+
 
 
 @Component({
@@ -14,7 +16,7 @@ import { map, filter, tap } from 'rxjs/operators'; // hanel u sarqel arandzin se
 export class RegistrationComponent implements OnInit {
 
   public registrationForm: FormGroup;
-  constructor(private fb: FormBuilder, private http: HttpClient) {
+  constructor(private fb: FormBuilder, private http: RestService) {
     this.createForm();
   }
 
@@ -32,16 +34,9 @@ export class RegistrationComponent implements OnInit {
   public submit() {
     if (this.registrationForm.valid) {
       console.log(this.registrationForm.value);
-      this.postData(this.registrationForm.value)
+      this.http.post('//localhost/popcorn_back/public/api/registration', this.registrationForm.value)
       .subscribe(res => console.log(res));
     }
-  }
-
-  private postData(obj) {
-    const body = JSON.stringify(obj);
-    const headers = new HttpHeaders({ 'Content-Type': 'application/json;charset=utf-8'});
-
-    return this.http.post('//localhost/popcorn_back/public/api/registration', body, { headers: headers });
   }
 
 }
